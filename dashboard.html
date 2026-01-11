@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <!-- 🌟 WELCOME SCREEN (Shows FIRST) -->
+    <div id="welcomeScreen" class="welcome-overlay active">
+        <div class="welcome-card">
+            <div class="welcome-emoji">🎉🌟</div>
+            <h1 class="welcome-title">Welcome to Study Hub</h1>
+            <h2 class="welcome-subtitle">{{ session.get('username', 'User') }}!</h2>
+            <p>Your dashboard is ready 🚀</p>
+            <button id="enterDashboard" class="enter-dashboard-btn">
+                <i class="fas fa-rocket"></i> Enter Dashboard
+            </button>
+        </div>
+    </div>
+
+    <!-- 🔥 MAIN DASHBOARD (Hidden until click) -->
+    <div class="dashboard-wrapper" id="mainDashboard" style="display: none;">
+        <!-- Left Sidebar Menu - STUDY + BLOGS ONLY -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h3>📚 Study Hub</h3>
+            </div>
+            <ul class="menu-list">
+                <!-- ✅ STUDY MATERIALS -->
+                <li class="menu-item active" data-section="study">
+                    <span class="menu-icon">📖</span> Study Materials
+                    <span class="menu-count" id="studyCount">0</span>
+                </li>
+                <!-- ✅ PROFESSOR BLOGS -->
+                <li class="menu-item" data-section="blogs">
+                    <span class="menu-icon">📄</span> Professor Blogs
+                    <span class="menu-count" id="blogsCount">0</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Navbar -->
+            <div class="navbar">
+                <div class="navbar-left">
+                    <button class="menu-toggle" id="menuToggle">☰</button>
+                    <img id="avatarHeader" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNGRkYiLz4KPC9zdmc+" alt="Avatar">
+                </div>
+                <div class="navbar-right">
+    <button id="homeBtn">🏠 Home</button>
+    <button id="logoutBtn">🚪 Logout</button>
+</div>
+
+            </div>
+
+            <!-- Profile Section -->
+            <div class="profile-container">
+                <div class="image-wrapper">
+                    <img id="profileCenter" src="" alt="Profile">
+                    <label for="imageUpload" class="camera-overlay" title="Set Profile Image">📷</label>
+                    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                </div>
+                <div id="welcomeText">Welcome {{ session.get('username', 'User') }}! 🌿</div>
+            </div>
+
+            <!-- 🔥 CONTENT SECTIONS - STUDY + BLOGS ONLY -->
+            <div class="content-sections">
+                <!-- 📖 STUDY MATERIALS -->
+                <div class="files-section study-section active" id="studySection">
+                    <h3>📖 Study Materials (<span id="studyCountHeader">0</span>)</h3>
+                    <div class="sub-section">
+                        <div id="subjectsList" class="files-grid"></div>
+                    </div>
+                </div>
+
+                <!-- 📄 PROFESSOR BLOGS -->
+                <div class="files-section blogs-section" id="blogsSection">
+                    <h3>📄 Professor Blogs (<span id="blogsCountHeader">0</span>)</h3>
+                    <div class="upload-section">
+                        <label for="blogsUpload" class="upload-btn">➕ Upload Blog</label>
+                        <input type="file" id="blogsUpload" accept=".pdf,.txt,.md,.docx,.doc" style="display: none;" onchange="uploadToSubject(event, 'general', 'blogs')">
+                    </div>
+                    <div class="sub-section">
+                        <!-- 🔥 PROFESSOR BLOGS GRID -->
+                        <div class="professor-blogs-grid">
+                            <div class="blogs-grid" id="blogsList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔥 STUDY SUBJECT UPLOAD INPUTS (KEEP THESE 5) -->
+            <input type="file" id="mlUpload" accept=".pdf,.ppt,.pptx,.doc,.docx,*/*" style="display:none;" onchange="uploadToSubject(event, 'ml', 'study')">
+            <input type="file" id="cryptoUpload" accept=".pdf,.ppt,.pptx,.doc,.docx,*/*" style="display:none;" onchange="uploadToSubject(event, 'crypto', 'study')">
+            <input type="file" id="spmUpload" accept=".pdf,.ppt,.pptx,.doc,.docx,*/*" style="display:none;" onchange="uploadToSubject(event, 'spm', 'study')">
+            <input type="file" id="ccUpload" accept=".pdf,.ppt,.pptx,.doc,.docx,*/*" style="display:none;" onchange="uploadToSubject(event, 'cc', 'study')">
+            <input type="file" id="dmUpload" accept=".pdf,.ppt,.pptx,.doc,.docx,*/*" style="display:none;" onchange="uploadToSubject(event, 'dm', 'study')">
+            
+            <!-- 🔥 BLOGS UPLOAD INPUT -->
+            <input type="file" id="blogsUpload" accept=".pdf,.txt,.md,.docx,.doc" style="display:none;" onchange="uploadToSubject(event, 'general', 'blogs')">
+
+            <!-- Preview & Snackbar -->
+            <div id="filePreview"></div>
+            <div id="snackbar"></div>
+            
+            <footer class="footer">
+                <span>© 2026 Developed by Jogeswar - Flask + SQLite + Blogs</span>
+            </footer>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+/* 🔥 NEON CYBERPUNK LOGIN - COMPLETE STYLE.CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    /* 🌈 NEON CYBERPUNK ANIMATED GRADIENT */
+    background: linear-gradient(135deg, 
+        #0C0C0C 0%,      /* Deep Black */
+        #1A0033 20%,     /* Dark Purple */
+        #2D0059 40%,     /* Neon Purple */
+        #00D4FF 60%,     /* Electric Cyan */
+        #00FF88 80%,     /* Neon Green */
+        #FF00FF 100%     /* Hot Pink */
+    );
+    background-size: 400% 400%;
+    animation: neonShift 8s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    color: white;
+}
+
+/* 🔥 NEON BACKGROUND ANIMATION */
+@keyframes neonShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 🔥 NEON GLOW LOGIN BOX */
+.login-box {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    padding: 40px;
+    width: 360px;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    border: 2px solid rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+}
+@keyframes neonBorder {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.login-box h2 {
+    text-align: center;
+    color: #000000 !important;        /* 🔥 SOLID HOT BLACK */
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 800;
+    text-shadow: 0 0 30px #000000;   /* 🔥 BLACK GLOW */
+    animation: pinkPulse 2s ease-in-out infinite alternate;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.3);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-weight: 500;
+}
+
+.login-box input::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+.login-box input:focus {
+    outline: none;
+    border-color: #ffffff;
+    box-shadow: 0 0 25px rgba(0,212,255,0.5);
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.2);
+}
+
+.login-box button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #00D4FF, #00FF88);
+    border: none;
+    color: #1a1a1a;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(0,212,255,0.4);
+}
+
+.login-box button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0,212,255,0.6);
+}
+
+.login-box button:active {
+    transform: translateY(-1px);
+}
+
+/* Login History - NEON STYLE */
+.login-history {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    max-width: 280px;
+    border: 1px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+}
+
+.login-history h4 {
+    margin: 0 0 15px 0;
+    background: linear-gradient(45deg, #00D4FF, #00FF88);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.login-log {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.login-log:hover {
+    background: rgba(0,212,255,0.2);
+    box-shadow: 0 5px 15px rgba(0,212,255,0.3);
+}
+
+.log-status {
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 25px;
+}
+
+.log-status.success { color: #00FF88; text-shadow: 0 0 10px #00FF88; }
+.log-status.failed { color: #FF00FF; text-shadow: 0 0 10px #FF00FF; }
+
+.log-time {
+    margin-left: auto;
+    font-size: 12px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+}
+
+/* NEON SNACKBAR */
+.snackbar {
+    visibility: hidden;
+    min-width: 300px;
+    background: linear-gradient(135deg, #00D4FF, #00FF88);
+    color: #1a1a1a;
+    text-align: center;
+    border-radius: 12px;
+    padding: 16px 20px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 600;
+    z-index: 10000;
+    box-shadow: 0 15px 35px rgba(0,212,255,0.4);
+}
+
+.snackbar.show {
+    visibility: visible;
+    animation: slideUp 0.4s ease-out, slideDown 0.4s 2.6s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from { bottom: 0; opacity: 0; transform: translateX(-50%) translateY(20px); }
+    to { bottom: 40px; opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+@keyframes slideDown {
+    from { bottom: 40px; opacity: 1; transform: translateX(-50%) translateY(0); }
+    to { bottom: 0; opacity: 0; transform: translateX(-50%) translateY(20px); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .login-box {
+        width: 90%;
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .login-history {
+        position: relative;
+        top: auto;
+        right: auto;
+        max-width: none;
+        margin: 20px;
+    }
+}
